@@ -25,7 +25,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?= viewProduto($_POST);?>
+                <pre>
+                    <?php print_r(json_decode($_POST["json"]));?>
+                </pre>
+
                 </tbody>
             </table>
         </div>

@@ -1,5 +1,6 @@
 <?php
-    function viewProduto($produto){
+    function viewProduto(array $produtos):string {
+
         list(
             "item"=>$item,
             "valor"=>$valor,
