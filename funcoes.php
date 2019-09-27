@@ -1,18 +1,15 @@
 <?php
-    function viewProduto(array $produtos):string {
-
-        list(
-            "item"=>$item,
-            "valor"=>$valor,
-            "quantidade"=>$quantidade
-            )=$produto;
-        $total=$valor*$quantidade;
+    function viewProduto($produto):string{
+        $total=$produto->valor*$produto->quantidade;
         return <<<STR
             <tr>
-                <th>{$item}</th>
-                <td>{$valor}</td>
-                <td>{$quantidade}</td>
+                <th>{$produto->item}</th>
+                <td>{$produto->valor}</td>
+                <td>{$produto->quantidade}</td>
                 <td>{$total}</td>
             </tr>
-        STR;
+         STR;
+    }
+    function viewProdutos(array $produtos):string {
+        return implode("",array_map("viewProduto",$produtos));
     }
