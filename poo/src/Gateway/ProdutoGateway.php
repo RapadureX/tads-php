@@ -16,14 +16,14 @@ class ProdutoGateway
     public function all(){
         $sql = "SELECT * FROM produto";
         $result = self::$conn->query($sql);
-        return $result->fetchAll(PDO::FETCH_ASSOC);
+        return $result->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function find($id)
     {
         $sql = "SELECT * FROM produto WHERE id = $id";
         $result = self::$conn->query($sql);
-        return $result->fetchAll(PDO::FETCH_ASSOC);
+        return $result->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function delete($id)
@@ -31,5 +31,7 @@ class ProdutoGateway
         $sql = "DELETE FROM produto WHERE id = $id";
         return self::$conn->query($sql);
     }
+
+
 
 }
