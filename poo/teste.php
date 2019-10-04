@@ -1,8 +1,11 @@
 <?php
+require "autoload.php";
+use Ifnc\Tads\Gateway\ProdutoGateway;
 
 
-$db = new PDO("sqlite:".__DIR__."/database/tads.db");
-$resultado = $db->query("select * from produto");
-$lista = $resultado->fetchAll();
-var_dump($lista);
+    $conn = new \PDO("sqlite:".__DIR__."/database/tads.db");
+
+    ProdutoGateway::setConnection($conn);
+    $gw = new ProdutoGateway();
+    var_dump($gw->all());
 ?>
