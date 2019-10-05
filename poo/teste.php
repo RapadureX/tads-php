@@ -1,5 +1,7 @@
 <?php
 require "autoload.php";
+
+use Ifnc\Tads\Entity\Produto;
 use Ifnc\Tads\Gateway\ProdutoGateway;
 
 
@@ -7,5 +9,16 @@ use Ifnc\Tads\Gateway\ProdutoGateway;
 
     ProdutoGateway::setConnection($conn);
     $gw = new ProdutoGateway();
-    var_dump($gw->all());
+    $data->id = 4;
+    $data->descricao = 'Refrigerante';
+    $data->estoque = 100;
+    $data->preco_custo = 12;
+    $data->preco_venda = 18;
+    $data->codigo_barras = '13523453234234';
+    $data->data_cadastro = date('Y-m-d');
+    $data->origem = 'N';
+
+    var_dump($gw->update($data));
+
+
 ?>
