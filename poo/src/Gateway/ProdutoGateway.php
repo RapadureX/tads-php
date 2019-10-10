@@ -4,7 +4,6 @@
 namespace Ifnc\Tads\Gateway;
 
 use PDO;
-use Ifnc\Tads\Entity\Produto;
 
 class ProdutoGateway
 {
