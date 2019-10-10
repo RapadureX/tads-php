@@ -1,7 +1,6 @@
 <?php
 require "autoload.php";
 
-use Ifnc\Tads\Entity\Produto;
 use Ifnc\Tads\Gateway\ProdutoGateway;
 
 
