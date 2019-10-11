@@ -3,6 +3,7 @@
 
 namespace Ifnc\Tads\Gateway;
 
+use Ifnc\Tads\Entity\Produto;
 use PDO;
 
 class ProdutoGateway
@@ -16,14 +17,14 @@ class ProdutoGateway
     public function all(){
         $sql = "SELECT * FROM produto";
         $result = self::$conn->query($sql);
-        return $result->fetchAll(PDO::FETCH_OBJ);
+        return $result->fetchAll(PDO::FETCH_CLASS,Produto::class);
     }
 
     public function find($id)
     {
         $sql = "SELECT * FROM produto WHERE id = $id";
         $result = self::$conn->query($sql);
-        return $result->fetchAll(PDO::FETCH_OBJ);
+        return $result->fetchAll(PDO::FETCH_CLASS,Produto::class);
     }
 
     public function delete($id)
@@ -32,7 +33,7 @@ class ProdutoGateway
         return self::$conn->query($sql);
     }
 
-    public function create($data)
+    public function create(Produto $produto)
     {
         $sql = <<<SQL
             INSERT INTO produto(
@@ -43,19 +44,19 @@ class ProdutoGateway
                 codigo_barras,
                 data_cadastro,
                 origem) values(
-                '{$data->descricao}',
-                '{$data->estoque}',
-                '{$data->preco_custo}',
-                '{$data->preco_venda}',
-                '{$data->codigo_barras}',
-                '{$data->data_cadastro}',
-                '{$data->origem}'
+                '{$produto->descricao}',
+                '{$produto->estoque}',
+                '{$produto->preco_custo}',
+                '{$produto->preco_venda}',
+                '{$produto->codigo_barras}',
+                '{$produto->data_cadastro}',
+                '{$produto->origem}'
                 )
         SQL;
         return self::$conn->exec($sql);
     }
 
-    public function update($data)
+    public function update(Produto $data)
     {
         $sql = <<<SQL
             UPDATE produto SET
