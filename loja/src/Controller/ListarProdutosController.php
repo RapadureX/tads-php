@@ -3,24 +3,30 @@
 namespace Ifnc\Tads\Controller;
 
 use Ifnc\Tads\Gateway\ProdutoGateway;
-use PDO;
+use Ifnc\Tads\Helper\Connection;
 
-class ListarProdutosController
+class ListarProdutosController implements IController
 {
     public $produtoGateway;
 
     public function __construct()
     {
-        $conn = new PDO("sqlite:".__DIR__."/../../database/tads.db");
-        ProdutoGateway::setConnection($conn);
-        $this->produtoGateway = new ProdutoGateway();
+        try{
+           ProdutoGateway::setConnection(Connection::open());
+           $this->produtoGateway = new ProdutoGateway();
+        }catch (\Exception $e){
+            echo $e->getMessage();
+        }
+
     }
 
     public function request(): void
     {
         $produtos = $this->produtoGateway->all();
         $titulo = 'Lista de Produtos';
-        require __DIR__ . '/../View/listar-produtos.php';
+        require __DIR__."/../../View/cabecalho.php";
+        require __DIR__."/../../View/listar-produtos.php";
+        require __DIR__ . "/../../View/rodape.php";
     }
 
 }

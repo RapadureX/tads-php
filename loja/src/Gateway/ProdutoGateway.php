@@ -69,6 +69,7 @@ class ProdutoGateway
                 origem = '{$data->origem}'
                 WHERE id = {$data->id}
         SQL;
+
         return self::$conn->exec($sql);
     }
 

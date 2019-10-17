@@ -1,17 +1,13 @@
 <?php
-require __DIR__."\..\autoload.php";
-use Ifnc\Tads\Controller\ListarProdutosController;
+require __DIR__ . "\..\autoload.php";
 
-switch ($_SERVER['PATH_INFO']) {
-    case '/listar-produtos':
-        $controller = new ListarProdutosController();
-        $controller->request();
-        break;
-    case '/adicionar-produto':
-        require 'adicionar-produto.php';
-        break;
-    default:
-        echo "Not Found - 404";
-        break;
+$path = $_SERVER['PATH_INFO'];
+$routes = require __DIR__ . '/../config/routes.php';
 
+if (!array_key_exists($path, $routes)) {
+    http_response_code(404);
+    exit();
 }
+
+$controller = new $routes[$path]();
+$controller->request();

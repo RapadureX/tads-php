@@ -1,7 +1,6 @@
-<?php include 'cabecalho.php'; ?>
 <div class="my-3 p-3 bg-white rounded shadow-sm">
     <span class="d-block text-center mb-3">
-        <a href="/adicionar-produto" class="fas fa-plus text-dark text-decoration-none"></a>
+        <a href="/adicionar-produto-form" class="fas fa-plus text-dark text-decoration-none"></a>
     </span>
     <table class="table">
         <thead>
@@ -29,12 +28,11 @@
                 <td><?=$produto->data_cadastro?></td>
                 <td><?=$produto->origem?></td>
                 <td>
-                    <a href="../../public/apagar.php?id=<?=$produto->id?>" class="fas fa-eraser text-dark text-decoration-none mr-2"></a>
-                    <a href="" class="fas fa-edit text-dark text-decoration-none mr-2"></a>
+                    <a href="\apagar-produto?id=<?=$produto->id?>" class="fas fa-eraser text-dark text-decoration-none mr-2"></a>
+                    <a href="\editar-produto-form?id=<?=$produto->id?>" class="fas fa-edit text-dark text-decoration-none mr-2"></a>
                 </td>
             </tr>
         <?php } ?>
         </tbody>
     </table>
 </div>
-<?php include 'rodape.php'; ?>
